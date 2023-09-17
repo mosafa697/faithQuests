@@ -1,10 +1,12 @@
-import express from 'express';
-import envVars from './config/env-config';
-// import questionRoutes from './routes/question-routes'
+import 'dotenv/config';
+import 'module-alias/register';
 
-const app = express();
-// app.use('/question', questionRoutes);
 
-app.listen(envVars.port_number, () => {
-    console.log('hello fe55o');
-})
+import validateEnv from '@/utils/validateEnv';
+import App from './app';
+
+validateEnv();
+
+const app = new App([], Number(process.env.PORT_NUMBER));
+
+app.listen();
